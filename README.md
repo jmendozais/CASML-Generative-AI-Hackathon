@@ -81,10 +81,9 @@ top_k: 16
 out_fname: "top16_fixed_chunking.csv"
 ```
 
-
 ## Results
 
-Our best model achieved a public score on par with the Top 20% best Kaggle competition submissions.
+Our best model achieved a score on par with the Top 20% solution of the public leaderboard of the Kaggle competition.
 
 
 
