@@ -81,35 +81,10 @@ top_k: 16
 out_fname: "top16_fixed_chunking.csv"
 ```
 
-### Key Components
-
-#### Chunking Functions
-```python
-from chunking import page_chunking, fixed_chunking, recursive_chunking
-
-# Get chunking function
-chunking_fn = get_chunking_fn("fixed_chunking")
-docs = chunking_fn(page_to_section, pages, chunk_size=1000, overlap=100)
-```
-
-#### Hybrid Retriever
-```python
-from retrieval import HybridRetriever
-
-retriever = HybridRetriever(
-    semantic_vs=semantic_vector_store,
-    keyword_vs=keyword_vector_store,
-    llm=llm_model
-)
-
-# Retrieve and rerank
-results = retriever.retrieve(query, top_k=20)
-reranked = retriever.rerank(query, results, top_k=4)
-```
 
 ## Results
 
-The project includes various experiment results in the `output/` directory, with different configurations achieving different performance scores (typically in the 0.33-0.37 range on public test sets). The best result is on par with the Top 20% solution of the competition.
+Our best model achieved a public score on par with the Top 20% best Kaggle competition submissions.
 
 
 
