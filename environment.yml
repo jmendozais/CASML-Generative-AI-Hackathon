@@ -1,0 +1,22 @@
+name: casml
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pandas
+  - sentence-transformers
+  - langchain
+  - langchain-community
+  - matplotlib
+  - seaborn
+  - pip
+  - pip:
+      - langchain-chroma
+      - langchain-huggingface
+      - langgraph
+      - langchain-google-genai
+      - torch
+      - torchvision
+      - vllm
+      - accelerate
+

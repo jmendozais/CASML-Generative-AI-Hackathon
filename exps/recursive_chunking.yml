@@ -1,0 +1,6 @@
+exp_name: "recursive_chunking"
+semantic_vs_path: "./data/semantic_vs_rc"
+keyword_vs_fname: "./data/keyword_vs_rc.pkl"
+chunking: "recursive_chunking"
+top_k: 16
+out_fname: "output/top16_recursive_chunking.csv"

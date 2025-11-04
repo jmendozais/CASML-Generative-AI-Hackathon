@@ -1,0 +1,6 @@
+exp_name: "page_chunking"
+semantic_vs_path: "./data/semantic_vs_pc"
+keyword_vs_fname: "./data/keyword_vs_pc.pkl"
+chunking: "page_chunking"
+top_k: 4
+out_fname: "top4_page_chunking.csv"

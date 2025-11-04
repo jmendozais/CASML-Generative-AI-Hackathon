@@ -1,0 +1,14 @@
+config_version_name: model_with_retriever
+input_example:
+- content: Give an overview of the book
+  role: user
+llm_endpoint_name: databricks-meta-llama-3-1-8b-instruct
+max_history_messages: 20
+retriever_config:
+  description: Retrieves internal documentation.
+  index_name: main.casml.knowledge_base_vs_index
+  num_results: 10
+  tool_name: product_technical_docs_retriever
+system_prompt: You are an assistant capable of answering questions using a knowledge base.
+uc_tool_names:
+- main.casml.*
