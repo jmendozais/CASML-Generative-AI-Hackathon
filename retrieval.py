@@ -148,4 +148,4 @@ class HybridRetriever:
                                     combined_scores[i][1].metadata["page_num"]))
         """
 
-        return combined_scores
+        return [doc for _, doc in combined_scores[:top_k]]
