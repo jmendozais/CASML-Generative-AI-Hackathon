@@ -103,7 +103,7 @@ class HybridRetriever:
         # Ignore warnings from similarity search in Chroma
         try:
             doc_scores_svs = self.semantic_vs.similarity_search_with_relevance_scores(query, k=top_k_candidates)
-        except Warning:
+        except:
             print("Warning during semantic search")
             
         doc_scores_kvs = self.keyword_vs.similarity_search_with_relevance_scores(query, k=top_k_candidates)
