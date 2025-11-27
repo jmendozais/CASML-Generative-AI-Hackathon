@@ -1,0 +1,9 @@
+exp_name: "rec_chunking_v0.14"
+data_dir: "./data"
+chunking: 
+  method: "recursive_chunking"
+  chunk_size:  512
+top_k_candidates: 64
+top_k_retrieval: 64
+top_k_rerank: 16
+start_page_num: 7

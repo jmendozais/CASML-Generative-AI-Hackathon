@@ -1,0 +1,9 @@
+exp_name: "fixed_chunking_v0.62"
+data_dir: "./data"
+chunking: 
+  method: "fixed_chunking"
+  chunk_size:  512
+top_k_candidates: 64
+top_k_retrieval: 64
+top_k_rerank: 16
+start_page_num: 7
