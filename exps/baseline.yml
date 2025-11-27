@@ -1,6 +1,9 @@
-exp_name: "page_chunking"
-semantic_vs_path: "./data/semantic_vs_pc"
-keyword_vs_fname: "./data/keyword_vs_pc.pkl"
-chunking: "page_chunking"
-top_k: 4
-out_fname: "top4_page_chunking.csv"
+exp_name: "page_chunking_v0.13"
+data_dir: "./data"
+chunking: 
+  method: "page_chunking"
+  chunk_size:  256
+top_k_candidates: 10
+top_k_retrieval: 10
+top_k_rerank: 4
+start_page_num: 7

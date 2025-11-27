@@ -75,10 +75,10 @@ def reciprocal_rank_fusion(doc_scores_svs, doc_scores_kvs, top_k=4):
 
     def update_doc_ranks(doc_ranks, doc_scores, k = 1, weight = 1):
         for rank, (doc, score) in enumerate(doc_scores):
-            page_num = doc.metadata['page_num']
-            if page_num not in doc_ranks:
-                doc_ranks[page_num] = [0, doc]
-            doc_ranks[page_num][0] += weight / (rank + k)
+            id = doc.metadata['id']
+            if id not in doc_ranks:
+                doc_ranks[id] = [0, doc]
+            doc_ranks[id][0] += weight / (rank + k)
 
     doc_ranks = {}
     update_doc_ranks(doc_ranks, doc_scores_svs, weight=1)
@@ -99,14 +99,20 @@ class HybridRetriever:
         self.keyword_vs = keyword_vs
         self.llm = llm
 
-    def retrieve(self,query, top_k=20, top_k_invididual=20):
-        doc_scores_svs = self.semantic_vs.similarity_search_with_relevance_scores(query, k=top_k_invididual)
-        doc_scores_kvs = self.keyword_vs.similarity_search_with_relevance_scores(query, k=top_k_invididual)
+    def retrieve(self, query, top_k=20, top_k_candidates=20):
+        # Ignore warnings from similarity search in Chroma
+        try:
+            doc_scores_svs = self.semantic_vs.similarity_search_with_relevance_scores(query, k=top_k_candidates)
+        except Warning:
+            print("Warning during semantic search")
+            
+        doc_scores_kvs = self.keyword_vs.similarity_search_with_relevance_scores(query, k=top_k_candidates)
 
         return reciprocal_rank_fusion(doc_scores_svs, doc_scores_kvs, top_k=top_k)
 
     def rerank(self, query, docs_and_relevances, top_k):
-        assert len(docs_and_relevances) >= top_k
+        assert len(docs_and_relevances) >= top_k, "Number of documents to rerank must be >= top_k, \
+            got {} < {}".format(len(docs_and_relevances), top_k)
         
         prompt = create_hypothetical_answer(query)
         hypothetical_answer = self.llm.invoke(prompt)
